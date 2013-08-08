@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Capistrano::Akamai::VERSION
   spec.authors       = ['Douglas Jarquin']
   spec.email         = ['douglasjarquin@me.com']
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{A capistrano plugin to purge or invalidate Akamai's Edge cache}
+  spec.summary       = %q{Trigger a callback to invalidate or purge Akamai's Edge cache after deploys}
   spec.homepage      = ''
   spec.license       = 'MIT'
 
@@ -18,6 +18,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
+  spec.add_dependency 'akamai_api', '>= 0.0.5'
   spec.add_development_dependency 'bundler', '~> 1.3'
   spec.add_development_dependency 'rake'
 end
