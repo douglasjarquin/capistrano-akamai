@@ -1,6 +1,6 @@
 # Capistrano::Akamai
 
-A capistrano plugin that can be used to purge or invalidate Akamai cache post deploy. Currently, it only provides one task, but in the idea is to generate dynamic lists of files based on the latest SCM changes.
+A capistrano plugin that can be used to purge or invalidate Akamai cache post deploy. Currently, it only provides one task, but the idea is to generate dynamic lists of files based on the latest SCM changes.
 
 ## Tasks
 
