@@ -20,7 +20,7 @@ module Capistrano
             namespace :invalidate do
 
               desc 'Mark the cached content in a cpcode as invalid'
-              task :cpcode do
+              task :cpcode, :on_error => :continue do
                 AkamaiApi::Ccu.invalidate_cpcode fetch(:akamai_cpcode), :email => fetch(:akamai_emails)
               end
 
