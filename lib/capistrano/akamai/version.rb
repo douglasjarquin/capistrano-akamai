@@ -1,3 +1,4 @@
+require 'capistrano'
 require 'akamai_api'
 
 module Capistrano
@@ -14,16 +15,17 @@ module Capistrano
           _cset(:akamai_emails, [''])
 
           AkamaiApi.config.merge! :auth => [fetch(:akamai_username), fetch(:akamai_password)]
+          ccu = AkamaiApi::Ccu
 
           namespace :akamai do
-
             namespace :invalidate do
-
               desc 'Mark the cached content in a cpcode as invalid'
               task :cpcode, :on_error => :continue do
-                AkamaiApi::Ccu.invalidate_cpcode fetch(:akamai_cpcode), :email => fetch(:akamai_emails)
+                silence_stream(STDOUT) do
+                  @response = ccu.invalidate_cpcode fetch(:akamai_cpcode), :email => fetch(:akamai_emails)
+                end
+                logger.important "#{@response.code} - #{@response.status}" unless @response.code < 200
               end
-
             end
           end
         end
